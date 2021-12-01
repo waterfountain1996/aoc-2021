@@ -17,7 +17,12 @@ def main():
         print("Part must be either 1 or 2")
         return
 
-    md = importlib.import_module(f"day{args.day:02}")
+    try:
+        md = importlib.import_module(f"day{args.day:02}")
+    except ImportError:
+        print("No solution... yet")
+        return
+
     try:
         func = getattr(md, f"part{args.part}")
     except AttributeError:
