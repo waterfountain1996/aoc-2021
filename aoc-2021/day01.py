@@ -12,7 +12,7 @@ def triplewise(iterable):
 
 
 def part1():
-    return len([x for i, x in enumerate(data[1:], 1) if data[i-1] < x])
+    return sum(1 for i, x in enumerate(data[1:], 1) if data[i-1] < x)
 
 
 def part2():
