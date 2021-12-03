@@ -1,5 +1,5 @@
 with open("input/day02.txt") as f:
-    data = [x.strip() for x in f.read().splitlines()]
+    data = [x.strip() for x in f.readlines()]
 
 
 def part1():
