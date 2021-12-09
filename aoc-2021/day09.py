@@ -13,10 +13,6 @@ def adjacent(i: int, j: int, board: list[list[int]]):
     yield (i-1, j) if i-1 >= 0 else None
     yield (i, j+1) if j+1 < len(board[i]) else None
     yield (i, j-1) if j-1 >= 0 else None
-    yield (i+1, j+1) if i+1 < len(board) and j+1 < len(board[i]) else None
-    yield (i+1, j-1) if i+1 < len(board) and j-1 >= 0 else None
-    yield (i-1, j-1) if i-1 >= 0 and j-1 >= 0 else None
-    yield (i-1, j+1) if i-1 >= 0 and j+1 < len(board[i]) else None
 
 
 def is_low(i: int, j: int, board: list[list[int]]):
@@ -36,11 +32,10 @@ def bfs(i, j, board, seen, dq, size=0):
     if (i, j) in seen:
         return size
 
-    cc = list(adj
-          for adj in list(adjacent(i, j, data))[:4]
-          if adj is not None
-          and board[adj[0]][adj[1]] != 9
-          and board[adj[0]][adj[1]] > board[i][j])
+    cc = list(adj for adj in adjacent(i, j, data)
+              if adj is not None
+              and board[adj[0]][adj[1]] != 9
+              and board[adj[0]][adj[1]] > board[i][j])
 
     dq.extend(cc)
     while dq:
